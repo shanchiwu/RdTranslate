@@ -52,5 +52,4 @@ HelpGPT(filter, stats, language = "Spanish")
 HelpGPT("sapply", prompt = "Your own prompt")
 }
 
-
 }

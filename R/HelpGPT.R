@@ -4,16 +4,16 @@
 #' @title HelpGPT
 #'
 #' @description
-#' Utilized OpenAI’s API to translate .Rd documentation files into any language.
+#' Uses OpenAI’s API to translate .Rd documentation files into any language.
 #'
-#' @param func_name a \code{\link{name}} or \code{\link{character}} string specifying the function for which help is sought.
-#' @param package a name or character vector giving the packages to look into for documentation, or \code{NULL}.
-#' @param language a character for specify language. This will be inserted in the pre-specified prompt.
-#' @param prompt Pre-specified prompt for chatGPT. See details below. User can also use their own prompt character.
-#' @param add.prompt Additional prompt for chatGPT. Will be added after \code{prompt}.
-#' @param roll Roll of chatGPT. See \code{\link{reset_chat_session}} in package \code{\link{chatgpt}}.
-#' @param api.key a character, your OpenAI api key.
-#' @param model ID of the model to use. Suggest to use \code{"gpt-4o"}. See https://platform.openai.com/docs/models.
+#' @param func_name A \code{\link{name}} or \code{\link{character}} string specifying the function for which documentation is sought.
+#' @param package A name or character vector specifying the packages to search for documentation, or \code{NULL} if no specific package is provided.
+#' @param language A character string specifying the target language for translation. This will be included in the pre-defined prompt.
+#' @param prompt A pre-defined prompt for ChatGPT. See details below. Users can also provide their own custom prompt as a character string.
+#' @param add.prompt An additional prompt for ChatGPT, appended after the main \code{prompt}.
+#' @param roll The role of ChatGPT during the session. See \code{\link{reset_chat_session}} in the \code{\link{chatgpt}} package.
+#' @param api.key A character string representing your OpenAI API key.
+#' @param model The ID of the model to use. It is recommended to use \code{"gpt-4o"}. See https://platform.openai.com/docs/models for more details.
 #'
 #' @details
 #' For \code{prompt=1}, the prompt is:
@@ -103,8 +103,8 @@ HelpGPT = function(func_name,
   # Create final prompt
   if(prompt==1){
     prompt = "Translate the following .Rd file text into formal, polished <TargetLanguage>, making sure to maintain a professional tone. Do not add any comment. Ensure no changes are made to any { or } characters, including preserving sequences of multiple } (like }}). Do not alter any LaTeX commands or formatting commands (such as \\item{}{}, \\code{}, \\emph{}, etc.). Each \\item should retain its original structure and indentation, and nested items should remain within their original scope. Additionally, avoid translating any R code or variable names.\n"
+    prompt = gsub('<TargetLanguage>', language, prompt)
   }
-  prompt = gsub('<TargetLanguage>', language, prompt)
 
   final_prompt = paste0(prompt, add.prompt, txt_para)
   #cat(final_prompt)

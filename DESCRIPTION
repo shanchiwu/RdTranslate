@@ -1,10 +1,10 @@
 Package: RdTranslate
-Title: Translate the .Rd file automately by chatGPT
-Version: 0.1.0
+Title: Automatically Translate R Documentation Using ChatGPT
+Version: 0.2.0
 Authors@R: 
-    person("Shan-Chi", "Wu", , "594537@gmail.com", role = c("aut", "cre"),
+    person("Shan-Chi", "Wu", email = "594537@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-6760-4999"))
-Description: This package will translate the help description.
+Description: This package provides functionality to translate R documentation (.Rd files) into various languages automatically using ChatGPT.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
